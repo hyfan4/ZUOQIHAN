@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <!-- 響應式必備標籤 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>左奇函 - 個人介紹主頁</title>
+    <style>
+        :root {
+            --primary-blue: #10319F; /* 左奇函主色調：深海霽藍 */
+            --light-blue: #eef3fc;
+            --text-dark: #222222;
+            --text-gray: #666666;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f7f9fc;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* 頂部導覽列 (對應草圖頂部 Header) */
+        header {
+            background-color: var(--white);
+            border-bottom: 2px solid var(--primary-blue);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .navbar {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+        }
+
+        /* 左側：圓形 Logo 與名字 */
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* 原本的樣式 */
+        .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .brand-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            border: 1.5px solid var(--primary-blue);
+            padding: 2px 10px;
+            border-radius: 6px;
+        }
+
+        /* 右側：頁籤導覽 */
+        .nav-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-gray);
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn.active {
+            color: var(--white);
+            background-color: var(--primary-blue);
+        }
+
+        /* 主容器 */
+        main {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 16px;
+        }
+
+        .page-content {
+            display: none;
+            background: var(--white);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        /* 影片響應式容器 (16:9比例) */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            background-color: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* 卡片與清單排版 */
+        h2 {
+            color: var(--primary-blue);
+            margin-bottom: 16px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--light-blue);
+            font-size: 1.3rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .info-item {
+            background: var(--light-blue);
+            padding: 10px 14px;
+            border-radius: 8px;
+        }
+
+        .info-item strong {
+            color: var(--primary-blue);
+        }
+
+        .timeline-list, .fact-list {
+            list-style: none;
+        }
+
+        .timeline-list li, .fact-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .timeline-list li::before, .fact-list li::before {
+            content: "•";
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -4px;
+        }
+
+        /* 手機端響應式調整 */
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .page-content {
+                padding: 16px;
+            }
+        }
+        /* 首頁展示圖片設定 */
+        .banner-box {
+            width: 100%;
+            max-width: 600px; /* 控制最大寬度，不會撐滿螢幕 */
+            margin: 0 auto 24px auto; /* 置中並保留下方間距 */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .banner-box img {
+            width: 70%;
+            height: 300px; /* 固定合適的高度 */
+            object-fit: cover; /* 保持比例裁切，不變形 */
+            display: block;
+        }
+        .timeline-list a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .timeline-list a:hover {
+            text-decoration: underline;
+        }
+
+        /* 移除姓名欄位內連結的底線 */
+        .info-item a {
+            text-decoration: none;
+            color: var(--primary-blue); /* 或是保持文字原本顏色：inherit */
+        }
+
+        /* 滑鼠懸停時也可以保持無底線，或依喜好微調 */
+        .info-item a:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 頂部導覽列 -->
+    <header>
+        <div class="navbar">
+            <div class="brand">
+                <!-- 修改為圖片標籤 -->
+                <img src="images/image.jpg" alt="左奇函頭像" class="avatar">
+                <div class="brand-name">左奇函</div>
+            </div>
+            <nav class="nav-links">
+                <button class="nav-btn active" onclick="switchPage('home')">Home</button>
+                <button class="nav-btn" onclick="switchPage('about me')">about me</button>
+                <button class="nav-btn" onclick="switchPage('page2')">Page 2</button>
+                <button class="nav-btn" onclick="switchPage('Honor')">Honor</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HOME 頁面 (基本資料 + 冷/熱知識) -->
+        <section id="home" class="page-content active">
+            <img src="images/image.jpg" alt="左奇函" style="width: 100%; max-width: 500px; height: 320px; object-fit: cover; display: block; margin: 0 auto 20px auto; border-radius: 12px;">
+            <h2>基本資料</h2>
+            <div class="info-grid">
+                <div class="info-item"><strong>姓名：</strong><a href="https://weibo.com/n/TF%E5%AE%B6%E6%97%8F-%E5%B7%A6%E5%A5%87%E5%87%BD" target="_blank" rel="noopener noreferrer">左奇函</a></div>
+                <div class="info-item"><strong>暱稱：</strong>奇函、奇奇、左千、小左</div>
+                <div class="info-item"><strong>英文名：</strong>Aiden、Kiyo</div>
+                <div class="info-item"><strong>生日：</strong>2010.03.19 (屬虎、雙魚座)</div>
+                <div class="info-item"><strong>出生地：</strong>湖南衡陽</div>
+                <div class="info-item"><strong>粉絲名：</strong>小刺蝟</div>
+            </div>
+        </section>
+
+        <!-- PAGE 1 頁面 (個人資料) -->
+        <section id="about me" class="page-content">
+            
+            <h2>冷 / 熱知識</h2>
+            <ul class="fact-list">
+                <li>公開時間是2022.02.14</li>
+                <li>喜歡穿搭是受巴黎時裝周影響</li>
+                <li>家有萌寵：巨貴皮皮、小狗小布丁、Momi、小貓左罐罐、左嘟嘟</li>
+                <li>喜歡滑雪、跳傘、潛水、衝浪，想去蹦極！</li>
+                <li>MBTI 是 ENTJ</li>
+                <li>喜歡哆啦A夢和樂高</li>
+                <li>喜歡吃雞肉，什麼做法都喜歡吃</li>
+                <li>最喜歡的顏色是藍色</li>
+                <li>平時最喜歡的運動是羽毛球</li>
+                <li>玩遊戲特別厲害，是小夥伴眼中的遊戲王</li>
+            </ul>
+            <h2 style="margin-top: 24px;">應援保護色：深海霽藍</h2>
+            <p style="line-height: 1.8;">
+                霽色是一種藍色，與雨後天晴的天空一樣的顏色。單字「霽」，雨止也，如「雲銷雨霽，彩徹區明」。都有風雨過後，鮮明潔淨之意。「無論是何種姿態的藍色，願在這寬廣的世間，你行任你行，天地自悠悠。去成為想成為的大人吧！」
+            </p>
+        </section>
+
+        <!-- PAGE 2 頁面 (草圖標註的 YouTube 影片超連結 / 嵌入 + 演藝經歷) -->
+        <section id="page2" class="page-content">
+            <h2>精選影片</h2>
+            <!-- 響應式嵌入 YouTube 影片，可直接替換 src 網址 -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" allowfullscreen></iframe>
+            </div>
+
+            
+        </section>
+
+        <!-- PAGE 3 頁面 (為你加冕榮譽) -->
+        <section id="Honor" class="page-content">
+            <h1>記錄下你走過的路</h1>
+            <h2>過往作品</h2>
+            <ul class="timeline-list">
+                <li><strong>2021年：</strong>參演電視劇《愛很美味》播出，擔任小山林角色</li>
+                <li><strong>2021年：</strong>參演電視劇《完美的他》播出，擔任小程俊角色</li>
+                <li><strong>2022年：</strong>參演電視劇《親愛的小孩》播出，擔任文兒子角色</li>
+                <li><strong>2024年：</strong>參演電影《我的船長老師》播出，擔任胡新陽角色</li>
+                <li><strong>2026年：</strong>參演電視劇<a href="https://w.mgtv.com/h/855808.html?lang=zh-tc" target="_blank" rel="noopener noreferrer">《我們的少年時代2》</a>播出，擔任李浩宇角色</li>
+            </ul>
+
+            <h2>榮譽成就</h2>
+            <ul class="timeline-list">
+                <li>衡陽 2018 街舞比賽《潮童來了》齊舞冠軍</li>
+                <li>2018 年參加湖南省少兒街舞比賽團隊冠軍</li>
+                <li>2020 年中國國際少兒車模大賽全國總決賽精彩回顧，榮獲全國總決賽舞台裝亞軍</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- 頁籤切換 JavaScript -->
+    <script>
+        function switchPage(pageId) {
+            // 隱藏所有頁面內容
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.remove('active');
+            });
+            // 移除所有按鈕的啟用樣式
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // 啟用當前選中的頁面與按鈕
+            document.getElementById(pageId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
