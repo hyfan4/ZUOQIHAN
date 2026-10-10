@@ -242,8 +242,8 @@
                 <div class="brand-name">左奇函</div>
             </div>
             <nav class="nav-links">
-                <button class="nav-btn active" onclick="switchPage('home')">Home</button>
-                <button class="nav-btn" onclick="switchPage('about me')">about me</button>
+                <button class="nav-btn active" onclick="switchPage('Home')">Home</button>
+                <button class="nav-btn" onclick="switchPage('About me')">about me</button>
                 <button class="nav-btn" onclick="switchPage('Honor')">Honor</button>
                 <button class="nav-btn" onclick="switchPage('page2')">Page 2</button>
             </nav>
@@ -252,7 +252,7 @@
 
     <main>
         <!-- HOME 頁面 (基本資料 + 冷/熱知識) -->
-        <section id="home" class="page-content active">
+        <section id="Home" class="page-content active">
             <img src="images/image.jpg" alt="左奇函" style="width: 100%; max-width: 500px; height: 320px; object-fit: cover; display: block; margin: 0 auto 20px auto; border-radius: 12px;">
             <h2>基本資料</h2>
             <div class="info-grid">
@@ -266,7 +266,7 @@
         </section>
 
         <!-- PAGE 1 頁面 (個人資料) -->
-        <section id="about me" class="page-content">
+        <section id="About me" class="page-content">
             
             <h2>冷 / 熱知識</h2>
             <ul class="fact-list">
@@ -286,18 +286,7 @@
                 霽色是一種藍色，與雨後天晴的天空一樣的顏色。單字「霽」，雨止也，如「雲銷雨霽，彩徹區明」。都有風雨過後，鮮明潔淨之意。「無論是何種姿態的藍色，願在這寬廣的世間，你行任你行，天地自悠悠。去成為想成為的大人吧！」
             </p>
         </section>
-
-        <!-- PAGE 2 頁面 (草圖標註的 YouTube 影片超連結 / 嵌入 + 演藝經歷) -->
-        <section id="page2" class="page-content">
-            <h2>精選影片</h2>
-            <!-- 響應式嵌入 YouTube 影片，可直接替換 src 網址 -->
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" allowfullscreen></iframe>
-            </div>
-
-            
-        </section>
-
+        
         <!-- PAGE 3 頁面 (為你加冕榮譽) -->
         <section id="Honor" class="page-content">
             <h1>記錄下你走過的路</h1>
@@ -317,6 +306,17 @@
                 <li>2020 年中國國際少兒車模大賽全國總決賽精彩回顧，榮獲全國總決賽舞台裝亞軍</li>
             </ul>
         </section>
+
+        <!-- PAGE 2 頁面 (草圖標註的 YouTube 影片超連結 / 嵌入 + 演藝經歷) -->
+        <section id="page2" class="page-content">
+            <h2>精選影片</h2>
+            <!-- 響應式嵌入 YouTube 影片，可直接替換 src 網址 -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        
     </main>
 
     <!-- 頁籤切換 JavaScript -->
