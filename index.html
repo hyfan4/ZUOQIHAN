@@ -229,6 +229,38 @@
         .info-item a:hover {
             text-decoration: none;
         }
+        /* 寄語卡片樣式 */
+        .message-card {
+            background: #f4f8fd;
+            border-left: 4px solid var(--primary-blue);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin: 24px auto 32px auto;
+            max-width: 650px;
+            box-shadow: 0 2px 8px rgba(16, 49, 159, 0.05);
+        }
+
+        .message-card p {
+            margin-bottom: 14px;
+            line-height: 1.8;
+            color: #444444;
+            font-size: 0.96rem;
+        }
+
+        .message-card .greeting {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 16px;
+        }
+
+        .message-card .signature {
+            text-align: right;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-top: 18px;
+            margin-bottom: 0;
+        }
     </style>
 </head>
 <body>
@@ -243,7 +275,7 @@
             </div>
             <nav class="nav-links">
                 <button class="nav-btn active" onclick="switchPage('Home')">Home</button>
-                <button class="nav-btn" onclick="switchPage('About me')">about me</button>
+                <button class="nav-btn" onclick="switchPage('About me')">About me</button>
                 <button class="nav-btn" onclick="switchPage('Honor')">Honor</button>
                 <button class="nav-btn" onclick="switchPage('page2')">Page 2</button>
             </nav>
@@ -251,9 +283,24 @@
     </header>
 
     <main>
-        <!-- HOME 頁面 (基本資料 + 冷/熱知識) -->
+        <!-- HOME 頁面 -->
         <section id="Home" class="page-content active">
             <img src="images/image.jpg" alt="左奇函" style="width: 100%; max-width: 500px; height: 320px; object-fit: cover; display: block; margin: 0 auto 20px auto; border-radius: 12px;">
+            <h2>小左寄語</h2>
+            <div class="message-card">
+                <p class="greeting">哈囉大家好呀 我是小左！～</p>
+                <p>最近大家都有好好吃飯、好好休息嗎～？</p>
+                <p>其實一直都想找個時間，安安靜靜地坐下來，把心裡好多好多話寫給你們～每次在舞台上看著台下的燈光，還有看見大家為我揮手、給我加油的樣子，心裡真的都暖洋洋的～</p>
+                <p>練習室的鏡子前面雖然流了好多汗，有時候也會覺得有一點點累～但只要一想到你們在等著我、一直在身後陪著我長大，好像一下子就又充滿能量了呢～！✨</p>
+                <p>我知道未來的路還很長很長，但我會繼續努力練習唱歌、跳舞，把每一個舞台都做到更好，不讓你們失望～希望每一次出現在大家面前的小左，都能比昨天再進步一點點！你們也是喔～不管遇到什麼煩惱，都要記得抱抱自己，不可以偷偷難過太久喔！要記得按時吃飯、天冷了要多穿一件外套～</p>
+                <p>謝謝你們一直以來的陪伴與愛～我們都要一起變成更好、更閃閃發光的人呀～！</p>
+                <p>下次見面的時候，也要開開心心地跟我打招呼喔～</p>
+                <p class="signature">愛你們的小左 敬上～</p>
+            </div>
+        </section>
+
+        <!-- PAGE 1 頁面 (個人資料) -->
+        <section id="About me" class="page-content">
             <h2>基本資料</h2>
             <div class="info-grid">
                 <div class="info-item"><strong>姓名：</strong><a href="https://weibo.com/n/TF%E5%AE%B6%E6%97%8F-%E5%B7%A6%E5%A5%87%E5%87%BD" target="_blank" rel="noopener noreferrer">左奇函</a></div>
@@ -263,10 +310,6 @@
                 <div class="info-item"><strong>出生地：</strong>湖南衡陽</div>
                 <div class="info-item"><strong>粉絲名：</strong>小刺蝟</div>
             </div>
-        </section>
-
-        <!-- PAGE 1 頁面 (個人資料) -->
-        <section id="About me" class="page-content">
             
             <h2>冷 / 熱知識</h2>
             <ul class="fact-list">
@@ -286,16 +329,17 @@
                 霽色是一種藍色，與雨後天晴的天空一樣的顏色。單字「霽」，雨止也，如「雲銷雨霽，彩徹區明」。都有風雨過後，鮮明潔淨之意。「無論是何種姿態的藍色，願在這寬廣的世間，你行任你行，天地自悠悠。去成為想成為的大人吧！」
             </p>
         </section>
-        
+
         <!-- PAGE 3 頁面 (為你加冕榮譽) -->
         <section id="Honor" class="page-content">
             <h1>記錄下你走過的路</h1>
             <h2>過往作品</h2>
             <ul class="timeline-list">
-                <li><strong>2021年：</strong>參演電視劇《愛很美味》播出，擔任小山林角色</li>
-                <li><strong>2021年：</strong>參演電視劇《完美的他》播出，擔任小程俊角色</li>
-                <li><strong>2022年：</strong>參演電視劇《親愛的小孩》播出，擔任文兒子角色</li>
+                <li><strong>2021年：</strong>參演電視劇<a href="https://v.qq.com/x/cover/mzc00200kqq8aps/x0041tw8lxb.html" target="_blank" rel="noopener noreferrer">《愛很美味》</a>播出，擔任小山林角色</li>
+                <li><strong>2021年：</strong>參演電視劇<a href="https://www.iq.com/wiki/zh_tw/album/%E5%AE%8C%E7%BE%8E%E7%9A%84%E4%BB%96-2021-1ika4sjl0xd" target="_blank" rel="noopener noreferrer">《完美的他》</a>播出，擔任小程俊角色</li>
+                <li><strong>2022年：</strong>參演電視劇<a href="https://www.iq.com/album/%E8%A6%AA%E6%84%9B%E7%9A%84%E5%B0%8F%E5%AD%A9-2022-j1sj3rhm0l?lang=zh_tw" target="_blank" rel="noopener noreferrer">《親愛的小孩》</a>播出，擔任文兒子角色</li>
                 <li><strong>2024年：</strong>參演電影《我的船長老師》播出，擔任胡新陽角色</li>
+                <li><strong>2024年：</strong>參演自製短劇《危險的關係》播出，擔任奇佑角色</li>
                 <li><strong>2026年：</strong>參演電視劇<a href="https://w.mgtv.com/h/855808.html?lang=zh-tc" target="_blank" rel="noopener noreferrer">《我們的少年時代2》</a>播出，擔任李浩宇角色</li>
             </ul>
 
