@@ -261,6 +261,91 @@
             margin-top: 18px;
             margin-bottom: 0;
         }
+        /* 輪播容器樣式 */
+        .carousel-container {
+            position: relative;
+            max-width: 500px; /* 控制輪播圖寬度 */
+            height: 330px;    /* 固定高度，跟原圖比例一致 */
+            margin: 0 auto 24px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 左右切換箭頭 (圖二樣式) */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.35);
+            color: #ffffff;
+            border: none;
+            width: 36px;
+            height: 48px;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            user-select: none;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(16, 49, 159, 0.8); /* 滑鼠懸停時換成應援深海霽藍 */
+        }
+
+        .prev-btn {
+            left: 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .next-btn {
+            right: 0;
+            border-radius: 6px 0 0 6px;
+        }
+
+        /* 底部圓點指示器 */
+        .carousel-dots {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: #ffffff;
+            transform: scale(1.2);
+        }
     </style>
 </head>
 <body>
@@ -285,7 +370,28 @@
     <main>
         <!-- HOME 頁面 -->
         <section id="Home" class="page-content active">
-            <img src="images/image.jpg" alt="左奇函" style="width: 100%; max-width: 500px; height: 320px; object-fit: cover; display: block; margin: 0 auto 20px auto; border-radius: 12px;">
+            <!-- 輪播圖容器 -->
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- 可以在這裡放多張圖片，替換 src 檔名即可 -->
+                    <div class="carousel-slide"><img src="images/image.jpg" alt="左奇函 1"></div>
+                    <div class="carousel-slide"><img src="images/zqh.jpg" alt="左奇函 2"></div>
+                    <div class="carousel-slide"><img src="images/IMG_9544.jpg" alt="左奇函 3"></div>
+                    <div class="carousel-slide"><img src="images/IMG_4554.jpg" alt="左奇函 4"></div>
+                    <div class="carousel-slide"><img src="images/IMG_3428.jpg" alt="左奇函 5"></div>
+                </div>
+
+                <!-- 左右切換按鈕 (像圖二那樣) -->
+                <button class="carousel-btn prev-btn" onclick="prevSlide()">&#10094;</button>
+                <button class="carousel-btn next-btn" onclick="nextSlide()">&#10095;</button>
+
+                <!-- 下方指示點 (可選) -->
+                <div class="carousel-dots" id="carouselDots">
+                    <span class="dot active" onclick="currentSlide(0)"></span>
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                </div>
+            </div>
             <h2>小左寄語</h2>
             <div class="message-card">
                 <p class="greeting">哈囉大家好呀 我是小左！～</p>
@@ -379,6 +485,43 @@
             document.getElementById(pageId).classList.add('active');
             event.target.classList.add('active');
         }
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+        const track = document.getElementById('carouselTrack');
+        const dots = document.querySelectorAll('.dot');
+
+        function updateSlidePosition() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateSlidePosition();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateSlidePosition();
+        }
+
+        function currentSlide(index) {
+            currentIndex = index;
+            updateSlidePosition();
+        }
+
+        // 可選：每 4 秒自動切換下一張
+        let slideInterval = setInterval(nextSlide, 4000);
+
+        // 當滑鼠移入時暫停自動切換，移開時繼續
+        const container = document.querySelector('.carousel-container');
+        container.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        container.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(nextSlide, 4000);
+        });
     </script>
 </body>
 </html>
